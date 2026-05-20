@@ -4,15 +4,21 @@ import com.felipeschwartz.e_commerce.dto.request.ChangePasswordRequestDTO;
 import com.felipeschwartz.e_commerce.model.entities.User;
 import com.felipeschwartz.e_commerce.repository.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
+ 
     private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -32,5 +38,14 @@ public class UserService {
         // Se dto for record, use dto.newPassword()
         user.setPassword(passwordEncoder.encode(dto.getNewPassword()));
         userRepository.save(user);
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

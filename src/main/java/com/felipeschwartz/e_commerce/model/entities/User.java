@@ -73,13 +73,11 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof User user)) return false;
-        return Objects.equals(id, user.id);
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, email);
     }
-
-
 }
