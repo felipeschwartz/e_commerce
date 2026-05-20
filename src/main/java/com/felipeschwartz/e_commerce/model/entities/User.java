@@ -1,9 +1,15 @@
 package com.felipeschwartz.e_commerce.model.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_users")
 public class User {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -13,7 +19,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String phone, String password) {
+    public User(Long id, String firstName, String lastName, String email, String phone, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,11 +28,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,14 +76,6 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof User user)) return false;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email);
-    }
+    
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email);
-    }
 }
