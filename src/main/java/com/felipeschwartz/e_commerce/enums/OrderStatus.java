@@ -1,4 +1,4 @@
-package com.felipeschwartz.e_comerce.enums;
+package com.felipeschwartz.e_commerce.enums;
 
 public enum OrderStatus {
     WAITING_PAYMENT,

@@ -1,4 +1,6 @@
-package com.felipeschwartz.e_comerce.model.entities;
+package com.felipeschwartz.e_commerce.model.entities;
+
+import java.util.Objects;
 
 public class User {
     private Integer id;
@@ -67,4 +69,17 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+
 }
